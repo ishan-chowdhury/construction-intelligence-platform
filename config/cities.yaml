@@ -1,0 +1,21 @@
+cities:
+  ahmedabad:
+    name: Ahmedabad
+    bbox: [72.45, 22.95, 72.75, 23.15]
+    priority: high
+    enabled: true
+  surat:
+    name: Surat
+    bbox: [72.75, 21.10, 72.95, 21.25]
+    priority: medium
+    enabled: true
+  navi_mumbai:
+    name: Navi Mumbai
+    bbox: [72.95, 18.95, 73.15, 19.15]
+    priority: high
+    enabled: false
+  pune_outskirts:
+    name: Pune Outskirts
+    bbox: [73.70, 18.50, 74.00, 18.70]
+    priority: low
+    enabled: false

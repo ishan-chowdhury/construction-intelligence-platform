@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Intelligence Command Center</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="brand">CONSTRUCTION INTELLIGENCE COMMAND CENTER</div>
+        <div class="status-bar">
+            <span>SYSTEM STATUS: <span class="status-ok">ONLINE</span></span>
+            <span>ACTIVE SECTORS: <span id="top-sectors-count">--</span></span>
+            <span>DATE RANGE: <span class="date-range">MAY 2024 - MAY 2025</span></span>
+        </div>
+        <div class="top-actions">
+            <button class="btn-outline">EXPORT INTEL</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar left-panel">
+            <h2>MISSION FILTERS</h2>
+            <div class="filters">
+                <label for="city-select">SECTOR SELECTION</label>
+                <select id="city-select">
+                    <option value="">ALL MONITORED ZONES</option>
+                </select>
+
+                <label for="conf-slider">THREAT/ACTIVITY LEVEL: <span id="conf-val">0.5</span></label>
+                <input type="range" id="conf-slider" min="0" max="1" step="0.1" value="0.5">
+                
+                <button id="refresh-btn" class="btn-primary">SCAN SECTOR</button>
+            </div>
+            
+            <div id="stats-panel">
+                <div class="stat-box">
+                    <h3 id="stat-sites" class="pulse-text">0</h3>
+                    <p>ACTIVE ZONES</p>
+                </div>
+                <div class="stat-box">
+                    <h3 id="stat-area">0</h3>
+                    <p>TOTAL AREA (HA)</p>
+                </div>
+            </div>
+            
+            <h3 class="panel-subtitle">ANOMALY CLUSTERS</h3>
+            <div id="site-list">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+        
+        <div class="site-detail-panel" id="site-detail">
+            <div class="panel-header">
+                <h3>TARGET INTELLIGENCE</h3>
+                <button class="close-btn" id="close-detail">✖</button>
+            </div>
+            
+            <div class="intel-body">
+                <div class="data-row"><span class="label">ZONE ID</span> <span class="value" id="detail-id"></span></div>
+                <div class="data-row"><span class="label">COORDINATES</span> <span class="value" id="detail-coords"></span></div>
+                <div class="data-row"><span class="label">AREA</span> <span class="value"><span id="detail-area"></span> HA</span></div>
+                <div class="data-row"><span class="label">CONFIDENCE</span> <span class="value highlight" id="detail-conf"></span></div>
+                
+                <div class="notes-section">
+                    <h4>ANALYST NOTES</h4>
+                    <p class="auto-note">Detected via multispectral anomaly (NDVI: <span id="detail-ndvi"></span>, BSI: <span id="detail-bsi"></span>). Strong probability of surface excavation near major transport corridor.</p>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-verify" onclick="labelSite('construction')">[ VERIFY ACTIVITY ]</button>
+                <button class="btn btn-dismiss" onclick="labelSite('agriculture')">[ DISMISS - AGRICULTURE ]</button>
+                <button class="btn btn-dismiss" onclick="labelSite('false_positive')">[ DISMISS - FALSE POSITIVE ]</button>
+            </div>
+            <div id="label-status" class="status-msg">INTELLIGENCE LOGGED successfully.</div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/map.js"></script>
+</body>
+</html>
